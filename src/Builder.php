@@ -213,7 +213,7 @@ class Builder
         return $transformer;
     }
 
-    protected function limit(int $limit = null): int
+    protected function limit(?int $limit = null): int
     {
         return is_null($limit) ? 732 : $limit;
     }
@@ -221,7 +221,7 @@ class Builder
     /**
      * @throws InvalidWeekday|InvalidRRule
      */
-    public function schedule(int $count = null): RecurrenceCollection
+    public function schedule(?int $count = null): RecurrenceCollection
     {
         return $this->transformer($this->limit($count))->transform($this->rule());
     }
@@ -238,7 +238,7 @@ class Builder
      * @throws InvalidWeekday
      */
     /** Beware that if count = 1 and that hits an exeption date, collection will be empty */
-    public function scheduleBetween(string | DateTime $startDate, string | DateTime $endDate, int $count = null): RecurrenceCollection
+    public function scheduleBetween(string | DateTime $startDate, string | DateTime $endDate, ?int $count = null): RecurrenceCollection
     {
 
         // The $countConstraintFailures in the ArrayTransformer::transform() method
@@ -263,7 +263,7 @@ class Builder
      * @throws Exception
      */
     /** Beware that if count = 1 and that hits an exeption date, collection will be empty */
-    public function scheduleBefore(string | DateTime $beforeDate, int $count = null): RecurrenceCollection
+    public function scheduleBefore(string | DateTime $beforeDate, ?int $count = null): RecurrenceCollection
     {
         return $this->transformer($this->limit($count))->transform(
             $this->rule(),
@@ -284,7 +284,7 @@ class Builder
      * @throws InvalidWeekday
      */
     /** Beware that if count = 1 and that hits an exeption date, collection will be empty */
-    public function scheduleAfter(string | DateTime $afterDate, int $count = null): RecurrenceCollection
+    public function scheduleAfter(string | DateTime $afterDate, ?int $count = null): RecurrenceCollection
     {
         return $this->transformer($this->limit($count))->transform(
             $this->rule(),
